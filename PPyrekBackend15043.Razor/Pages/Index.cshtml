@@ -1,0 +1,35 @@
+﻿@page
+@model IndexModel
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title mb-4">Hello!</h2>
+
+            <p class="mb-3">
+                <a asp-page="/User/GraphQL projects/Index"
+                   class="btn btn-primary">
+                    GraphQL client
+                </a>
+            </p>
+            <p class="mb-3">
+                <a asp-page="/Admin/RestProjects/Index"
+                   class="btn btn-secondary">
+                    REST API CRUD  Panel
+                </a>
+            </p>
+            @if (User.IsInRole("Admin"))
+            {
+
+                <p>
+                    <a asp-page="/Admin/Users/Index"
+                       class="btn btn-outline-secondary">
+                        Admin Panel
+                    </a>
+                </p>
+            }
+        </div>
+    </div>
+</div>

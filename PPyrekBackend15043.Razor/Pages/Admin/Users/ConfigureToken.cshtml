@@ -1,0 +1,26 @@
+﻿@page "{userId}"
+@model PPyrekBackend15043.Razor.Pages.Admin.Users.ConfigureTokenModel
+
+<h2>Configure JWT for “@Model.UserEntity?.UserName”</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="UserId" />
+
+    <div class="mb-3">
+        <label class="form-label">Select Permissions:</label>
+        @foreach (var perm in Model.AvailablePermissions)
+        {
+            <div class="form-check">
+                <input class="form-check-input"
+                       type="checkbox"
+                       name="SelectedPermissions"
+                       value="@perm"
+                @(Model.SelectedPermissions.Contains(perm) ? "checked" : "") />
+                <label class="form-check-label">@perm</label>
+            </div>
+        }
+    </div>
+
+    <button type="submit" class="btn btn-primary">Generate Token</button>
+    <a asp-page="Index" class="btn btn-secondary ms-2">Cancel</a>
+</form>

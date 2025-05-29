@@ -1,0 +1,41 @@
+@page
+@model PPyrekBackend15043.Razor.Pages.Admin.RestProjects.Tasks.Subtasks.IndexModel
+@{
+    ViewData["Title"] = "Subtasks";
+}
+
+<h2>Subtasks for Task “@Model.TaskTitle” in Project “@Model.ProjectTitle”</h2>
+
+<p>
+    <a asp-page="Create"
+       asp-route-projectId="@Model.ProjectId"
+       asp-route-taskId="@Model.TaskId"
+       class="btn btn-primary">Create Subtask</a>
+    <a asp-page="../Index"
+       asp-route-projectId="@Model.ProjectId"
+       class="btn btn-secondary">Back to Tasks</a>
+</p>
+
+<table class="table">
+    <thead><tr><th>Description</th><th>Actions</th></tr></thead>
+    <tbody>
+        @foreach (var s in Model.Subtasks)
+        {
+            <tr>
+                <td>@s.Description</td>
+                <td>
+                    <a asp-page="Edit"
+                       asp-route-projectId="@Model.ProjectId"
+                       asp-route-taskId="@Model.TaskId"
+                       asp-route-id="@s.Id"
+                       class="btn btn-sm btn-secondary">Edit</a>
+                    <a asp-page="Delete"
+                       asp-route-projectId="@Model.ProjectId"
+                       asp-route-taskId="@Model.TaskId"
+                       asp-route-id="@s.Id"
+                       class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

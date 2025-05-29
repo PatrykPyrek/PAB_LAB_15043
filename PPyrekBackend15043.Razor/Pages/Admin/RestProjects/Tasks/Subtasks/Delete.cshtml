@@ -1,0 +1,17 @@
+@page "{id:guid}"
+@model PPyrekBackend15043.Razor.Pages.Admin.RestProjects.Tasks.Subtasks.DeleteModel
+@{
+    ViewData["Title"] = "Delete Subtask";
+    var pid = Request.Query["projectId"];
+    var tid = Request.Query["taskId"];
+}
+
+<h2>Delete Subtask</h2>
+<p>Are you sure you want to delete <strong>@Model.Subtask.Description</strong>?</p>
+<form method="post">
+    <input type="hidden" asp-for="ProjectId" />
+    <input type="hidden" asp-for="TaskId" />
+    <input type="hidden" asp-for="Subtask.Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-page="Index" asp-route-projectId="@pid" asp-route-taskId="@tid" class="btn btn-secondary">Cancel</a>
+</form>

@@ -1,0 +1,42 @@
+@page "{projectId:guid}"
+@model PPyrekBackend15043.Razor.Pages.Admin.RestProjects.Tasks.IndexModel
+@{
+    ViewData["Title"] = "Tasks";
+}
+
+<h2>Tasks for Project “@Model.ProjectName”</h2>
+
+<p>
+    <a asp-page="Create"
+       asp-route-projectId="@Model.ProjectId"
+       class="btn btn-primary">Create New Task</a>
+    <a asp-page="../Index" class="btn btn-secondary">Back to Projects</a>
+</p>
+
+<table class="table">
+    <thead><tr><th>Title</th><th>Actions</th></tr></thead>
+    <tbody>
+        @foreach (var t in Model.Tasks)
+        {
+            <tr>
+                <td>
+                    <a asp-page="Subtasks/Index"
+                       asp-route-projectId="@Model.ProjectId"
+                       asp-route-taskId="@t.Id">
+                        @t.Title
+                    </a>
+                </td>
+                <td>
+                    <a asp-page="Edit"
+                       asp-route-projectId="@Model.ProjectId"
+                       asp-route-id="@t.Id"
+                       class="btn btn-sm btn-secondary">Edit</a>
+                    <a asp-page="Delete"
+                       asp-route-projectId="@Model.ProjectId"
+                       asp-route-id="@t.Id"
+                       class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

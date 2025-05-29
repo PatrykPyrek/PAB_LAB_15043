@@ -1,0 +1,30 @@
+﻿@page
+@model PPyrekBackend15043.Razor.Pages.User.GraphqlProjects.IndexModel
+@{
+    ViewData["Title"] = "GraphQL User";
+}
+<h2>GraphQL: Projects</h2>
+
+<form method="post" class="mb-4">
+    <div class="input-group">
+        <input asp-for="NewName" class="form-control" placeholder="New Project.." />
+        <button type="submit" class="btn btn-success">Add</button>
+    </div>
+</form>
+
+<p>
+    <a class="btn btn-primary" asp-page="./Index">Refresh</a>
+</p>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr><th>Name</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model.Projects)
+        {
+            <tr><td>@p.Name</td></tr>
+        }
+    </tbody>
+</table>

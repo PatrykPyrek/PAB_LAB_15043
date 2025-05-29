@@ -1,0 +1,21 @@
+﻿@page
+@model PPyrekBackend15043.Razor.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Logowanie";
+}
+<h2>Logowanie</h2>
+<form method="post">
+    <div class="mb-3">
+        <label>Login</label>
+        <input asp-for="UserName" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Hasło</label>
+        <input asp-for="Password" type="password" class="form-control" />
+    </div>
+    @if (Model.ErrorMessage != null)
+    {
+        <div class="text-danger">@Model.ErrorMessage</div>
+    }
+    <button class="btn btn-primary">Login</button>
+</form>

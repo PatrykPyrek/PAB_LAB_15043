@@ -1,0 +1,24 @@
+@page "{id:guid}"
+@model PPyrekBackend15043.Razor.Pages.Admin.RestProjects.Tasks.Subtasks.EditModel
+@{
+    ViewData["Title"] = "Edit Subtask";
+    var pid = Request.Query["projectId"];
+    var tid = Request.Query["taskId"];
+}
+
+<h2>Edit Subtask</h2>
+<form method="post">
+    <input type="hidden" asp-for="ProjectId" />
+    <input type="hidden" asp-for="TaskId" />
+    <input type="hidden" asp-for="Subtask.Id" />
+    <div class="form-group">
+        <label asp-for="Subtask.Description"></label>
+        <input asp-for="Subtask.Description" class="form-control" />
+        <span asp-validation-for="Subtask.Description" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-page="Index" asp-route-projectId="@pid" asp-route-taskId="@tid" class="btn btn-secondary">Cancel</a>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,42 @@
+﻿@page
+@model PPyrekBackend15043.Razor.Pages.Admin.Users.IndexModel
+
+<h2 class="mb-4">User Management</h2>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr><th>User</th><th>Roles</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model.Users)
+        {
+            var hasAdmin = Model.UserRoles[u.Id].Contains("Admin");
+            <tr>
+                <td>@u.UserName</td>
+                <td>@string.Join(", ", Model.UserRoles[u.Id])</td>
+                <td class="d-flex">
+                    <form method="post"
+                          asp-page-handler="ToggleRole"
+                          asp-route-userId="@u.Id"
+                          class="me-2">
+                        <button type="submit"
+                                class="btn btn-sm @(hasAdmin ? "btn-warning" : "btn-outline-secondary")">
+                            @(hasAdmin ? "Revoke Admin Role" : "Grant Admin Role")
+                        </button>
+                    </form>
+                    <a asp-page="ConfigureToken"
+                       asp-route-userId="@u.Id"
+                       class="btn btn-sm btn-outline-primary">
+                        Custom Token…
+                    </a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,13 @@
+@page "{id:guid}"
+@model PPyrekBackend15043.Razor.Pages.Admin.RestProjects.DeleteModel
+@{
+    ViewData["Title"] = "Delete Project";
+}
+
+<h2>Delete Project</h2>
+<p>Are you sure you want to delete <strong>@Model.Project.Name</strong>?</p>
+<form method="post">
+    <input type="hidden" asp-for="Project.Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+</form>
